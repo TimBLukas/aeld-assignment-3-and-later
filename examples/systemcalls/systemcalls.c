@@ -1,4 +1,12 @@
 #include "systemcalls.h"
+#include <stdlib.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <string.h>
+#include <stdio.h>
+#include <sys/wait.h>
+#include <syslog.h>
+#include <unistd.h>
 
 /**
  * @param cmd the command to execute with system()
@@ -16,8 +24,27 @@ bool do_system(const char *cmd)
  *   and return a boolean true if the system() call completed with success
  *   or false() if it returned a failure
 */
+	openlog(NULL, 0, LOG_USER);
+	int returnCode = system(cmd);
 
-    return true;
+	if ( returnCode == -1 ) {
+		int saved_errno = errno;
+		// systme cannot call specified module --> returned value -1
+		fprintf(stderr, "system function was unable to call the specified command: %s\n", strerror(saved_errno));
+		syslog(LOG_ERR, "system function was unable to call the specified command: %s\n", strerror(saved_errno));
+		
+		closelog();
+		return false;
+	
+	} 
+	
+	bool success = WIFEXITED(returnCode) && WEXITSTATUS(returnCode) == 0;
+	if (!success) {
+		fprintf(stderr, "Command execution failed\n");
+		syslog(LOG_ERR, "Command execution failed");
+	}
+	closelog();
+	return success;
 }
 
 /**
@@ -44,11 +71,9 @@ bool do_exec(int count, ...)
     {
         command[i] = va_arg(args, char *);
     }
+    va_end(args);
     command[count] = NULL;
-    // this line is to avoid a compile warning before your implementation is complete
-    // and may be removed
-    command[count] = command[count];
-
+	
 /*
  * TODO:
  *   Execute a system command by calling fork, execv(),
@@ -58,10 +83,36 @@ bool do_exec(int count, ...)
  *   as second argument to the execv() command.
  *
 */
-
-    va_end(args);
-
-    return true;
+    pid_t pid = fork();
+    
+    if (pid < 0) {
+    	fprintf(stderr, "Unable to fork a process: %s\n", strerror(errno));
+    	return false;
+    }
+    
+    if ( pid == 0 ) {
+    	/* Child process */
+    	execv(command[0], command);
+    	
+    	// Reachable only if execv() failes
+    	fprintf(stderr, "execv() failed: %s\n", strerror(errno));
+    	_exit(127);
+    }
+    
+    // Parent process
+    int status;
+    pid_t result;
+    
+    do {
+    	result = waitpid(pid, &status, 0);
+    } while ( result == -1 && errno == EINTR);
+    
+    if ( result == -1) {
+    	fprintf(stderr, "waitpid() failed: %s\n", strerror(errno));
+    	return false;
+    }
+    
+    return WIFEXITED(status) && WEXITSTATUS(status) == 0;
 }
 
 /**
@@ -79,11 +130,9 @@ bool do_exec_redirect(const char *outputfile, int count, ...)
     {
         command[i] = va_arg(args, char *);
     }
-    command[count] = NULL;
-    // this line is to avoid a compile warning before your implementation is complete
-    // and may be removed
-    command[count] = command[count];
 
+    va_end(args);
+    command[count] = NULL;
 
 /*
  * TODO
@@ -93,7 +142,51 @@ bool do_exec_redirect(const char *outputfile, int count, ...)
  *
 */
 
-    va_end(args);
+    int fd = open(outputfile, O_WRONLY|O_TRUNC|O_CREAT, 0644);
 
-    return true;
+    if ( fd < 0 ) {
+        fprintf(stderr, "Unable to open or create outputfile: %s\n", strerror(errno));
+      	return false;
+    }
+    
+    pid_t pid;
+    switch ( pid = fork()) {
+	case -1:
+	    fprintf(stderr, "Unable to fork child process: %s\n", strerror(errno));
+	    close(fd);
+	    return false;
+	case 0:
+	    if ( dup2(fd, 1) < 0 ) {
+		fprintf(stderr, "Unale to redirect stdout: %s\n", strerror(errno));
+		close(fd);
+		_exit(127);
+	    }
+	    close(fd);
+
+	    execv(command[0], command);
+	    
+	    // Reachable only if execv() failes
+	    fprintf(stderr, "execv() failed: %s\n", strerror(errno));
+	    _exit(127);
+
+	default:
+	    close(fd);
+
+
+	    // Parent process
+	    int status;
+	    pid_t result;
+	    
+	    do {
+		result = waitpid(pid, &status, 0);
+	    } while ( result == -1 && errno == EINTR);
+	    
+	    if ( result == -1) {
+		fprintf(stderr, "waitpid() failed: %s\n", strerror(errno));
+		return false;
+	    }
+	    
+	    return WIFEXITED(status) && WEXITSTATUS(status) == 0;
+    }
+
 }
