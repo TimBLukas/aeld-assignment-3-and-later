@@ -11,7 +11,7 @@ WRITEDIR=/tmp/aeld-data
 
 CONFIG_BASE=/etc/finder-app/conf/
 
-username=$(cat "{$CONFIG_BASE}username.txt")
+username=$(cat "$CONFIG_BASEusername.txt")
 
 if [ $# -lt 3 ]
 then
