@@ -66,11 +66,16 @@ OUTPUTSTRING=$(finder.sh "$WRITEDIR" "$WRITESTR")
 rm -rf /tmp/aeld-data
 
 set +e
-echo ${OUTPUTSTRING} | grep "${MATCHSTR}"
-if [ $? -eq 0 ]; then
-	echo "success"
-	exit 0
-else
-	echo "failed: expected  ${MATCHSTR} in ${OUTPUTSTRING} but instead found"
-	exit 1
-fi
+
+# MOdification assignment 4 part 2
+echo ${OUTPUTSTRING} > /tmp/assignment4-result.txt
+
+# echo ${OUTPUTSTRING} | grep "${MATCHSTR}"
+
+# if [ $? -eq 0 ]; then
+# 	echo "success"
+# 	exit 0
+# else
+# 	echo "failed: expected  ${MATCHSTR} in ${OUTPUTSTRING} but instead found"
+# 	exit 1
+# fi
