@@ -1,5 +1,4 @@
-CROSS_COMPILE ?=
-CC      := $(CROSS_COMPILE)gcc
+CC ?= gcc
 CFLAGS  ?= -Wall -Wextra -Werror -g
 LDFLAGS ?=
 TARGET  := aesdsocket
