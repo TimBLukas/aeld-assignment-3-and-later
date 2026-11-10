@@ -1,4 +1,3 @@
-CC ?= gcc
 $(info CC=$(CC))
 CFLAGS  ?= -Wall -Wextra -Werror -g
 LDFLAGS ?=

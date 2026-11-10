@@ -1,129 +1,129 @@
-==5688== Memcheck, a memory error detector
-==5688== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==5688== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==5688== Command: ./aesdsocket
-==5688== Parent PID: 5686
-==5688== 
---5688-- 
---5688-- Valgrind options:
---5688--    --error-exitcode=1
---5688--    --leak-check=full
---5688--    --show-leak-kinds=all
---5688--    --track-origins=yes
---5688--    --errors-for-leak-kinds=definite
---5688--    --verbose
---5688--    --log-file=valgrind-out.txt
---5688-- Contents of /proc/version:
---5688--   Linux version 6.8.0-138-generic (buildd@lcy02-amd64-008) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04.3) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #138~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Aug  7 13:43:15 UTC 
---5688-- 
---5688-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---5688-- Page sizes: currently 4096, max supported 4096
---5688-- Valgrind library directory: /usr/libexec/valgrind
---5688-- Reading syms from /home/tbl/Projects/aeld-assignment-3-and-later/server/aesdsocket
---5688-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
---5688--   Considering /usr/lib/debug/.build-id/e6/d3f5d4f2a24a5464ab59ae321b9474d70410f8.debug ..
---5688--   .. build-id is valid
---5688-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
---5688--    object doesn't have a symbol table
---5688--    object doesn't have a dynamic symbol table
---5688-- Scheduler: using generic scheduler lock implementation.
---5688-- Reading suppressions file: /usr/libexec/valgrind/default.supp
-==5688== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-5688-by-tbl-on-???
-==5688== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-5688-by-tbl-on-???
-==5688== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-5688-by-tbl-on-???
-==5688== 
-==5688== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==5688== don't want to do, unless you know exactly what you're doing,
-==5688== or are doing some strange experiment):
-==5688==   /usr/bin/vgdb --pid=5688 ...command...
-==5688== 
-==5688== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==5688==   /path/to/gdb ./aesdsocket
-==5688== and then give GDB the following command
-==5688==   target remote | /usr/bin/vgdb --pid=5688
-==5688== --pid is optional if only one valgrind process is running
-==5688== 
---5688-- REDIR: 0x402aa40 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcec2 (???)
---5688-- REDIR: 0x402a810 (ld-linux-x86-64.so.2:index) redirected to 0x580bcedc (???)
---5688-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
---5688--    object doesn't have a symbol table
---5688-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
---5688--    object doesn't have a symbol table
-==5688== WARNING: new redirection conflicts with existing -- ignoring it
---5688--     old: 0x0402aa40 (strlen              ) R-> (0000.0) 0x580bcec2 ???
---5688--     new: 0x0402aa40 (strlen              ) R-> (2007.0) 0x0484ee30 strlen
---5688-- REDIR: 0x4027220 (ld-linux-x86-64.so.2:strcmp) redirected to 0x484fcd0 (strcmp)
---5688-- REDIR: 0x402afa0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853840 (mempcpy)
---5688-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
---5688--   Considering /usr/lib/debug/.build-id/6a/6cb5a80fd5e5bb5bf3aeaa111add98e88843a5.debug ..
---5688--   .. build-id is valid
-==5688== WARNING: new redirection conflicts with existing -- ignoring it
---5688--     old: 0x04910c20 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---5688--     new: 0x04910c20 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==5688== WARNING: new redirection conflicts with existing -- ignoring it
---5688--     old: 0x04910c20 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---5688--     new: 0x04910c20 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
-==5688== WARNING: new redirection conflicts with existing -- ignoring it
---5688--     old: 0x04910c20 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---5688--     new: 0x04910c20 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==5688== WARNING: new redirection conflicts with existing -- ignoring it
---5688--     old: 0x04910c20 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---5688--     new: 0x04910c20 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
---5688-- REDIR: 0x49136e0 (libc.so.6:strnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x49139a0 (libc.so.6:strpbrk) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x49132a0 (libc.so.6:strcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4931c90 (libc.so.6:wcsnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4914690 (libc.so.6:memset) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4930500 (libc.so.6:wcslen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4914bd0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4930330 (libc.so.6:wcschr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4913220 (libc.so.6:index) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4913920 (libc.so.6:rindex) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4914560 (libc.so.6:memmove) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
-==5688== Preferring higher priority redirection:
---5688--     old: 0x04a0b880 (__memcpy_avx_unalign) R-> (2018.0) 0x04850f90 __memcpy_avx_unaligned_erms
---5688--     new: 0x04a0b880 (__memcpy_avx_unalign) R-> (2018.1) 0x04852880 memmove
---5688-- REDIR: 0x49303b0 (libc.so.6:wcscmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x49149a0 (libc.so.6:stpncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4930970 (libc.so.6:wmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x49137f0 (libc.so.6:strncmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4914a30 (libc.so.6:strcasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x49133e0 (libc.so.6:strcspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4930430 (libc.so.6:wcscpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4913190 (libc.so.6:strcat) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4914b20 (libc.so.6:strncasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4914440 (libc.so.6:bcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x491c530 (libc.so.6:memrchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4915fd0 (libc.so.6:strchrnul) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4913350 (libc.so.6:strcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4914ad0 (libc.so.6:strcasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4913660 (libc.so.6:strlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4913890 (libc.so.6:strncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4914910 (libc.so.6:stpcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x49143b0 (libc.so.6:memchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4913ac0 (libc.so.6:strspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4914790 (libc.so.6:mempcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4914a80 (libc.so.6:strncasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4915f40 (libc.so.6:rawmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---5688-- REDIR: 0x4a086d0 (libc.so.6:__strrchr_avx2) redirected to 0x484e810 (rindex)
---5688-- REDIR: 0x4a088a0 (libc.so.6:__strlen_avx2) redirected to 0x484ed10 (strlen)
---5688-- REDIR: 0x4a0c040 (libc.so.6:__memset_avx2_unaligned_erms) redirected to 0x4852770 (memset)
---5688-- REDIR: 0x4910060 (libc.so.6:malloc) redirected to 0x4848820 (malloc)
---5688-- REDIR: 0x49103a0 (libc.so.6:free) redirected to 0x484b210 (free)
---5688-- REDIR: 0x49114e0 (libc.so.6:calloc) redirected to 0x484d9d0 (calloc)
---5688-- REDIR: 0x4a084c0 (libc.so.6:__strchrnul_avx2) redirected to 0x4853330 (strchrnul)
---5688-- REDIR: 0x4a09d70 (libc.so.6:__strcpy_avx2) redirected to 0x484ee60 (strcpy)
---5688-- REDIR: 0x4a0b880 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x4852880 (memmove)
---5688-- REDIR: 0x4913f80 (libc.so.6:__GI_strstr) redirected to 0x4853ae0 (__strstr_sse2)
---5688-- REDIR: 0x4a04b40 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x4852010 (bcmp)
---5688-- REDIR: 0x4a03a00 (libc.so.6:__strcmp_avx2) redirected to 0x484fbd0 (strcmp)
---5688-- REDIR: 0x4a0b840 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4853440 (mempcpy)
---5688-- REDIR: 0x4910700 (libc.so.6:realloc) redirected to 0x484dc50 (realloc)
-==5688== 
-==5688== HEAP SUMMARY:
-==5688==     in use at exit: 0 bytes in 0 blocks
-==5688==   total heap usage: 152 allocs, 152 frees, 332,331 bytes allocated
-==5688== 
-==5688== All heap blocks were freed -- no leaks are possible
-==5688== 
-==5688== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==66016== Memcheck, a memory error detector
+==66016== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==66016== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
+==66016== Command: ./aesdsocket
+==66016== Parent PID: 66012
+==66016== 
+--66016-- 
+--66016-- Valgrind options:
+--66016--    --error-exitcode=1
+--66016--    --leak-check=full
+--66016--    --show-leak-kinds=all
+--66016--    --track-origins=yes
+--66016--    --errors-for-leak-kinds=definite
+--66016--    --verbose
+--66016--    --log-file=valgrind-out.txt
+--66016-- Contents of /proc/version:
+--66016--   Linux version 6.8.0-138-generic (buildd@lcy02-amd64-008) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04.3) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #138~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Aug  7 13:43:15 UTC 
+--66016-- 
+--66016-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
+--66016-- Page sizes: currently 4096, max supported 4096
+--66016-- Valgrind library directory: /usr/libexec/valgrind
+--66016-- Reading syms from /home/tbl/Projects/aeld-assignment-3-and-later/server/aesdsocket
+--66016-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+--66016--   Considering /usr/lib/debug/.build-id/e6/d3f5d4f2a24a5464ab59ae321b9474d70410f8.debug ..
+--66016--   .. build-id is valid
+--66016-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
+--66016--    object doesn't have a symbol table
+--66016--    object doesn't have a dynamic symbol table
+--66016-- Scheduler: using generic scheduler lock implementation.
+--66016-- Reading suppressions file: /usr/libexec/valgrind/default.supp
+==66016== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-66016-by-tbl-on-???
+==66016== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-66016-by-tbl-on-???
+==66016== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-66016-by-tbl-on-???
+==66016== 
+==66016== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==66016== don't want to do, unless you know exactly what you're doing,
+==66016== or are doing some strange experiment):
+==66016==   /usr/bin/vgdb --pid=66016 ...command...
+==66016== 
+==66016== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==66016==   /path/to/gdb ./aesdsocket
+==66016== and then give GDB the following command
+==66016==   target remote | /usr/bin/vgdb --pid=66016
+==66016== --pid is optional if only one valgrind process is running
+==66016== 
+--66016-- REDIR: 0x402aa40 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcec2 (???)
+--66016-- REDIR: 0x402a810 (ld-linux-x86-64.so.2:index) redirected to 0x580bcedc (???)
+--66016-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
+--66016--    object doesn't have a symbol table
+--66016-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+--66016--    object doesn't have a symbol table
+==66016== WARNING: new redirection conflicts with existing -- ignoring it
+--66016--     old: 0x0402aa40 (strlen              ) R-> (0000.0) 0x580bcec2 ???
+--66016--     new: 0x0402aa40 (strlen              ) R-> (2007.0) 0x0484ee30 strlen
+--66016-- REDIR: 0x4027220 (ld-linux-x86-64.so.2:strcmp) redirected to 0x484fcd0 (strcmp)
+--66016-- REDIR: 0x402afa0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853840 (mempcpy)
+--66016-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
+--66016--   Considering /usr/lib/debug/.build-id/6a/6cb5a80fd5e5bb5bf3aeaa111add98e88843a5.debug ..
+--66016--   .. build-id is valid
+==66016== WARNING: new redirection conflicts with existing -- ignoring it
+--66016--     old: 0x04910c20 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--66016--     new: 0x04910c20 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
+==66016== WARNING: new redirection conflicts with existing -- ignoring it
+--66016--     old: 0x04910c20 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--66016--     new: 0x04910c20 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
+==66016== WARNING: new redirection conflicts with existing -- ignoring it
+--66016--     old: 0x04910c20 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--66016--     new: 0x04910c20 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
+==66016== WARNING: new redirection conflicts with existing -- ignoring it
+--66016--     old: 0x04910c20 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--66016--     new: 0x04910c20 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
+--66016-- REDIR: 0x49136e0 (libc.so.6:strnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x49139a0 (libc.so.6:strpbrk) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x49132a0 (libc.so.6:strcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4931c90 (libc.so.6:wcsnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4914690 (libc.so.6:memset) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4930500 (libc.so.6:wcslen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4914bd0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4930330 (libc.so.6:wcschr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4913220 (libc.so.6:index) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4913920 (libc.so.6:rindex) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4914560 (libc.so.6:memmove) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+==66016== Preferring higher priority redirection:
+--66016--     old: 0x04a0b880 (__memcpy_avx_unalign) R-> (2018.0) 0x04850f90 __memcpy_avx_unaligned_erms
+--66016--     new: 0x04a0b880 (__memcpy_avx_unalign) R-> (2018.1) 0x04852880 memmove
+--66016-- REDIR: 0x49303b0 (libc.so.6:wcscmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x49149a0 (libc.so.6:stpncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4930970 (libc.so.6:wmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x49137f0 (libc.so.6:strncmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4914a30 (libc.so.6:strcasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x49133e0 (libc.so.6:strcspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4930430 (libc.so.6:wcscpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4913190 (libc.so.6:strcat) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4914b20 (libc.so.6:strncasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4914440 (libc.so.6:bcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x491c530 (libc.so.6:memrchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4915fd0 (libc.so.6:strchrnul) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4913350 (libc.so.6:strcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4914ad0 (libc.so.6:strcasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4913660 (libc.so.6:strlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4913890 (libc.so.6:strncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4914910 (libc.so.6:stpcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x49143b0 (libc.so.6:memchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4913ac0 (libc.so.6:strspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4914790 (libc.so.6:mempcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4914a80 (libc.so.6:strncasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4915f40 (libc.so.6:rawmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--66016-- REDIR: 0x4a086d0 (libc.so.6:__strrchr_avx2) redirected to 0x484e810 (rindex)
+--66016-- REDIR: 0x4a088a0 (libc.so.6:__strlen_avx2) redirected to 0x484ed10 (strlen)
+--66016-- REDIR: 0x4a0c040 (libc.so.6:__memset_avx2_unaligned_erms) redirected to 0x4852770 (memset)
+--66016-- REDIR: 0x4910060 (libc.so.6:malloc) redirected to 0x4848820 (malloc)
+--66016-- REDIR: 0x49103a0 (libc.so.6:free) redirected to 0x484b210 (free)
+--66016-- REDIR: 0x49114e0 (libc.so.6:calloc) redirected to 0x484d9d0 (calloc)
+--66016-- REDIR: 0x4a084c0 (libc.so.6:__strchrnul_avx2) redirected to 0x4853330 (strchrnul)
+--66016-- REDIR: 0x4a09d70 (libc.so.6:__strcpy_avx2) redirected to 0x484ee60 (strcpy)
+--66016-- REDIR: 0x4a0b880 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x4852880 (memmove)
+--66016-- REDIR: 0x4913f80 (libc.so.6:__GI_strstr) redirected to 0x4853ae0 (__strstr_sse2)
+--66016-- REDIR: 0x4a04b40 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x4852010 (bcmp)
+--66016-- REDIR: 0x4a03a00 (libc.so.6:__strcmp_avx2) redirected to 0x484fbd0 (strcmp)
+--66016-- REDIR: 0x4a0b840 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4853440 (mempcpy)
+--66016-- REDIR: 0x4910700 (libc.so.6:realloc) redirected to 0x484dc50 (realloc)
+==66016== 
+==66016== HEAP SUMMARY:
+==66016==     in use at exit: 0 bytes in 0 blocks
+==66016==   total heap usage: 152 allocs, 152 frees, 332,366 bytes allocated
+==66016== 
+==66016== All heap blocks were freed -- no leaks are possible
+==66016== 
+==66016== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
